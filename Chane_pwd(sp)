@@ -1,0 +1,25 @@
+USE [Banking]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Change_Pwd]    Script Date: 06-04-2021 10:45:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Change_Pwd]
+(             
+                @crn                      VARCHAR(100),
+                @new_pwd                  bigint
+)
+AS
+BEGIN 
+               
+                              UPDATE Login SET [PASSWORD]=@new_pwd WHERE CRN=@crn
+                              
+                             
+END
+GO
+
+
