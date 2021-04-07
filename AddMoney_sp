@@ -1,0 +1,22 @@
+USE [Banking]
+GO
+
+/****** Object:  StoredProcedure [dbo].[AddMoney_sp]    Script Date: 07-04-2021 14:08:20 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE procedure [dbo].[AddMoney_sp] 
+@AccNo bigint, @AccBalance float
+as
+update AccBalance
+set [Account_balance]=(select Account_Balance from AccBalance where Account_NO=@AccNO)+@AccBalance
+where Account_NO=@AccNO
+
+GO
+
+
