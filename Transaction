@@ -1,7 +1,7 @@
 USE [Banking]
 GO
 
-/****** Object:  Table [dbo].[Transaction]    Script Date: 06-04-2021 14:49:29 ******/
+/****** Object:  Table [dbo].[Transaction]    Script Date: 07-04-2021 10:27:43 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,10 +9,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Transaction](
-	[Sender] [bigint] NOT NULL,
-	[Receiver] [bigint] NOT NULL,
-	[Amount] [bigint] NULL
+	[Sender_Acc] [bigint] NOT NULL,
+	[Receiver_Acc] [bigint] NULL,
+	[Rec_IFSC] [nchar](10) NULL,
+	[Amount] [money] NULL,
+	[Transaction_time] [datetime] NULL
 ) ON [PRIMARY]
 
 GO
+
 
