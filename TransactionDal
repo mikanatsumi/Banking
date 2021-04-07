@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration;
+using System.Data;
+
+
+namespace BankingLib
+{
+    public class TransactionDAL
+    {
+        public void AddMoney(AccountBal ab)
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Banking"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("AddMoney_sp", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@AccNo", ab.Account_NO);
+
+            cmd.Parameters.AddWithValue("@AccBalance",ab.Account_Balance);
+            cn.Open();
+            cmd.ExecuteNonQuery();
+            cn.Close();
+
+        }
+    }
+}
