@@ -1,0 +1,31 @@
+
+body {
+    background-color: antiquewhite;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+}
+
+.button {
+    text-align:center;
+}
+.form-horizontal {
+    height: 400px;
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 150px;
+    background-color: white;
+    margin-top: 50px;
+}
+
+.userpage {
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 50px;
+    height: 400px;
+    width: 400px;
+    padding-top: 100px;
+}
+.dl-horizontal{
+    padding-left:50px;
+}
