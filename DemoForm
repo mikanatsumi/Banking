@@ -1,0 +1,65 @@
+@*@using (Html.BeginForm("ShowIndivudualdetails", "Customer", FormMethod.Get))
+    {
+    <form class="navbar-form navbar-left" role="search">
+        @Html.TextBox("search")
+        <input type="submit" value=" Search" />
+    </form>
+    -------------html part--------------------
+    Controller:
+    public action showIndividualdetails(string id)
+    {
+            List<AdminModel> modellist = new List<AdminModel>();
+            AdminDAL admDAL = new AdminDAL();
+            List<Admin> custlist = admDAL.ShowCustomers(string id);
+
+            foreach (var item in custlist)
+            {
+                AdminModel model = new AdminModel();
+                model.Account_No = item.Account_No;
+                model.Account_Name = item.Account_Name;
+                model.Mobile_No = item.Mobile_No;
+                model.Email = item.Email;
+                model.Address = item.Address;
+                model.Bank_Branch = item.Bank_Branch;
+                model.IFSC = item.IFSC;
+
+                modellist.Add(model);
+            }
+
+            return View(modellist);
+        }
+
+    AdminDal::
+
+    public List<Admin> ShowCustomers(string search)
+        {
+            List<Admin> custlist = new List<Admin>();
+
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Banking"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("[dbo].[sp_ShowCustomers]", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            search=Convert.ToInt32();
+            cmd.Parameters.AddWithValue("@accno", search);
+            cn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Admin cust = new Admin();
+                cust.Account_No = Convert.ToInt64(dr["Account_No"]);
+                cust.Account_Name = dr["Account_Name"].ToString();
+                cust.Mobile_No = Convert.ToInt64(dr["Mobile_No"]);
+                cust.Email = dr["Email"].ToString();
+                cust.Address= dr["Address"].ToString();
+                cust.Bank_Branch = dr["Bank_Branch"].ToString();
+                cust.IFSC = dr["IFSC"].ToString();
+
+                custlist.Add(cust);
+            }
+            cn.Close();
+
+            return custlist;
+        }
+    }
+
+    }*@
